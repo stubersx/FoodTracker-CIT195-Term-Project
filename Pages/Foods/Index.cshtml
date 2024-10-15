@@ -1,0 +1,97 @@
+﻿@page
+@model FoodTracker.Pages.Foods.IndexModel
+
+@{
+    ViewData["Title"] = "My Food";
+}
+
+<div class="row listpage px-md-5">
+    <div class="wrapper my-md-5 py-5 px-sm-5">
+        <h1 class="display-2">@ViewData["Title"]</h1>
+        <form asp-page="./Index" method="get" class="my-3">
+            <p class="text-md-end"><input type="text" asp-for="SearchString" placeholder="Filter by Food Name or Meal Plan" style="width: 450px; font-size: 1.1rem; font-weight: bold;" />
+                <input type="submit" value="Filter" class="btn btn-dark mt-1 mt-sm-0" />
+                <a class="btn btn-light mt-1 mt-sm-0" style="font-size: 0.9rem; text-shadow: none;" asp-page="./Index">Clear</a>
+            </p>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Food[0].Name)
+                    </th>
+                    <th>
+                        <a asp-page="./Index" asp-route-sortOrder="@Model.GroupSort">
+                            @Html.DisplayNameFor(model => model.Food[0].FoodGroup)
+                        </a>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Food[0].Remaining)
+                    </th>
+                    <th>
+                        <a asp-page="./Index" asp-route-sortOrder="@Model.BuySort">
+                            @Html.DisplayNameFor(model => model.Food[0].PurchaseDate)
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-page="./Index" asp-route-sortOrder="@Model.OpenSort">
+                            @Html.DisplayNameFor(model => model.Food[0].OpenDate)
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-page="./Index" asp-route-sortOrder="@Model.ExpireSort">
+                            @Html.DisplayNameFor(model => model.Food[0].ExpirationDate)
+                        </a>
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Food[0].MealPlan)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Food[0].RecipeLink)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Food)
+                {
+                    <tr>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.FoodGroup)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.Remaining)
+                            @Html.DisplayFor(modelItem => item.Unit)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.PurchaseDate)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.OpenDate)
+                        </td>
+                        <td rowspan="2" class="bg-danger text-center">
+                            @Html.DisplayFor(modelItem => item.ExpirationDate)
+                        </td>
+                        <td rowspan="2">
+                            @Html.DisplayFor(modelItem => item.MealPlan)
+                        </td>
+                        <td style="border: none;">
+                            <a target="_blank" href="@Html.DisplayFor(modelItem => item.RecipeLink)">@Html.DisplayFor(modelItem => item.RecipeLink)</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p class="text-end"><a class="btn btn-outline-danger" asp-page="Create">Add Food</a></p>
+    </div>
+</div>

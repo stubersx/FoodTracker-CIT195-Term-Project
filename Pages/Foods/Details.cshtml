@@ -1,0 +1,63 @@
+﻿@page
+@model FoodTracker.Pages.Foods.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row listpage px-md-5">
+    <div class="wrapper my-md-5 p-5 crudpage">
+        <h1 class="display-3">@ViewData["Title"]</h1>
+        <h3>@Model.Food.Name</h3>
+        <hr />
+        <dl class="row">
+            <dt class="col-5 text-end">
+                @Html.DisplayNameFor(model => model.Food.FoodGroup)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.Food.FoodGroup)
+            </dd>
+            <dt class="col-5 text-end">
+                @Html.DisplayNameFor(model => model.Food.Remaining)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.Food.Remaining)
+                @Html.DisplayFor(model => model.Food.Unit)
+            </dd>
+            <dt class="col-5 text-end">
+                @Html.DisplayNameFor(model => model.Food.PurchaseDate)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.Food.PurchaseDate)
+            </dd>
+            <dt class="col-5 text-end">
+                @Html.DisplayNameFor(model => model.Food.OpenDate)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.Food.OpenDate)
+            </dd>
+            <dt class="col-5 text-end text-danger">
+                @Html.DisplayNameFor(model => model.Food.ExpirationDate)
+            </dt>
+            <dd class="col-7 text-danger">
+                @Html.DisplayFor(model => model.Food.ExpirationDate)
+            </dd>
+            <dt class="col-5 text-end">
+                @Html.DisplayNameFor(model => model.Food.MealPlan)
+            </dt>
+            <dd class="col-7" style="word-wrap: break-word;">
+                @Html.DisplayFor(model => model.Food.MealPlan)
+            </dd>
+            <dt class="col-5 text-end">
+                @Html.DisplayNameFor(model => model.Food.RecipeLink)
+            </dt>
+            <dd class="col-7" style="word-wrap: break-word;">
+                <a target="_blank" href="@Html.DisplayFor(model => model.Food.RecipeLink)">@Html.DisplayFor(model => model.Food.RecipeLink)</a>
+            </dd>
+        </dl>
+        <div class="text-end">
+            <a class="btn btn-outline-danger" asp-page="./Edit" asp-route-id="@Model.Food.Id">Edit</a>
+            <a class="btn btn-outline-light" style="text-shadow: none;" asp-page="./Index">Back to List</a>
+        </div>
+    </div>
+</div>

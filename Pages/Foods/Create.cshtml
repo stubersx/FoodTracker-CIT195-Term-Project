@@ -1,0 +1,76 @@
+﻿@page
+@model FoodTracker.Pages.Foods.CreateModel
+@using FoodTracker.Models
+@{
+    ViewData["Title"] = "Add Food";
+}
+
+<div class="row listpage px-md-5">
+    <div class="wrapper my-md-5 py-5 px-sm-5 crudpage">
+        <h1 class="display-3">@ViewData["Title"]</h1>
+        <hr />
+        <form method="post" class="p-5">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.Name" class="control-label"></label></p>
+                <p class="col-md-8"><input asp-for="Food.Name" class="form-control" /></p>
+                <span asp-validation-for="Food.Name" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.FoodGroup" class="control-label"></label></p>
+                <p class="col-md-8">
+                    <select asp-for="Food.FoodGroup" asp-items="Html.GetEnumSelectList<FoodGroups>()" class="form-control">
+                        <option value="">Select Food Group</option>
+                    </select>
+                </p>
+                <span asp-validation-for="Food.FoodGroup" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.Remaining" class="control-label"></label></p>
+                <p class="col-md-8"><input asp-for="Food.Remaining" class="form-control" placeholder="Write the amount of this food remaining (number)." /></p>
+                <span asp-validation-for="Food.Remaining" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.Unit" class="control-label"></label></p>
+                <p class="col-md-8"><input asp-for="Food.Unit" class="form-control" placeholder="oz, lb, g, ml, etc..." /></p>
+                <span asp-validation-for="Food.Unit" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.PurchaseDate" class="control-label"></label></p>
+                <p class="col-md-8"><input asp-for="Food.PurchaseDate" class="form-control" /></p>
+                <span asp-validation-for="Food.PurchaseDate" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.OpenDate" class="control-label"></label></p>
+                <p class="col-md-8"><input asp-for="Food.OpenDate" class="form-control" /></p>
+                <span asp-validation-for="Food.OpenDate" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.ExpirationDate" class="control-label"></label></p>
+                <p class="col-md-8"><input asp-for="Food.ExpirationDate" class="form-control" /></p>
+                <span asp-validation-for="Food.ExpirationDate" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.MealPlan" class="control-label"></label></p>
+                <p class="col-md-8"><textarea asp-for="Food.MealPlan" class="form-control" rows="5" placeholder="Include meal plans using this food here.
+Ex) 09/29: stew"></textarea></p>
+                <span asp-validation-for="Food.MealPlan" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group row">
+                <p class="col-md-4 text-md-end"><label asp-for="Food.RecipeLink" class="control-label"></label></p>
+                <p class="col-md-8"><input type="url" asp-for="Food.RecipeLink" class="form-control" placeholder="https://" /></p>
+                <span asp-validation-for="Food.RecipeLink" class="text-danger text-center"></span>
+            </div>
+            <div class="form-group text-end">
+                <input type="submit" value="Create" class="btn btn-outline-danger" />
+                <a class="btn btn-outline-light" style="text-shadow: none;" asp-page="Index">Back to List</a>
+            </div>
+        </form>
+
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+        }
+    </div>
+</div>
